@@ -1,0 +1,6 @@
+{
+  "name": "spykiller",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "." },
+  "routes": [{ "pattern": "spy.instituteofmayhem.com", "custom_domain": true }]
+}

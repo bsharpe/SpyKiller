@@ -51,3 +51,11 @@ npm run batch -- 10 120 1   # bot balance run: seeds, seconds per run, route (de
 ```
 
 Game rules live in `src/logic/`. It has no Phaser imports and is deterministic for a given seed. `src/scenes/` renders that state, and `src/art.js` paints every texture at runtime.
+
+## Deploy
+
+```sh
+npm run deploy   # tests, wrangler deploy, then smoke check of https://spy.instituteofmayhem.com
+```
+
+Cloudflare Workers static assets. `.assetsignore` is an allowlist: only `index.html` and `src/` are public. `scripts/smoke.mjs` checks that.

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "test": "node --test",
-    "batch": "node scripts/batch.mjs"
+    "batch": "node scripts/batch.mjs",
+    "deploy": "npm test && wrangler deploy && node scripts/smoke.mjs https://spy.instituteofmayhem.com"
   }
 }
