@@ -11,10 +11,49 @@
     #game { width: 100%; height: 100%; }
     /* keeps the font face loaded before Phaser draws text */
     body::after { content: '.'; font-family: 'Russo One'; position: absolute; left: -100px; }
+    #iom { position: fixed; left: calc(16px + env(safe-area-inset-left)); bottom: calc(32px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 8px; color: #ffb000; font: 18px/1 'Russo One', sans-serif; text-decoration: none; }
+    #iom[hidden] { display: none; }
+    #iom:hover, #iom:focus-visible { color: #fff; }
+    #iom:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 4px; }
+    @media (max-width: 520px) { #iom span { display: none; } }
+    /* side panels fill the letterbox bars beside the 9:16 canvas on wide screens */
+    .side { display: none; position: fixed; top: 0; bottom: 0; width: calc((100vw - 100vh * 9 / 16) / 2); box-sizing: border-box; padding: 16px; flex-direction: column; justify-content: center; align-items: center; gap: 32px; color: #dfe8f0; font: 15px/1.4 'Russo One', sans-serif; text-align: center; pointer-events: none; }
+    @media (min-aspect-ratio: 5/4) { .side { display: flex; } }
+    #side-l { left: 0; } #side-r { right: 0; }
+    .side h2 { margin: 0 0 10px; font-size: 12px; font-weight: normal; letter-spacing: 0.15em; color: #8fa3b8; }
+    .side dl { display: grid; grid-template-columns: auto auto; gap: 6px 14px; margin: 0; text-align: left; }
+    .side dt { color: #ffd54f; text-align: right; }
+    .side dd { margin: 0; }
+    .side p { margin: 0; max-width: 260px; font-size: 12px; color: #b8c7d6; }
+    .stat { font-size: 32px; color: #7dff9a; }
   </style>
 </head>
 <body>
   <div id="game"></div>
+  <aside class="side" id="side-l">
+    <section>
+      <h2>CONTROLS</h2>
+      <dl>
+        <dt>↑ ↓</dt><dd>gas / brake</dd>
+        <dt>← →</dt><dd>steer</dd>
+        <dt>SHIFT</dt><dd>gear LO / HI</dd>
+        <dt>SPACE / Z</dt><dd>machine guns</dd>
+        <dt>X</dt><dd>oil slick</dd>
+        <dt>C</dt><dd>smoke screen</dd>
+        <dt>V</dt><dd>missiles (helicopter)</dd>
+        <dt>P · M</dt><dd>pause · music</dd>
+      </dl>
+    </section>
+    <p>Drive into the red WEAPONS VAN for special weapons. Don't shoot civilians. Cars are unlimited until the timer runs out.</p>
+  </aside>
+  <aside class="side" id="side-r">
+    <section><h2>BEST</h2><div class="stat" id="side-best">0</div></section>
+    <section><h2>DISTANCE</h2><div class="stat" id="side-dist">—</div></section>
+  </aside>
+  <a id="iom" href="https://instituteofmayhem.com/" target="_blank" rel="noopener" aria-label="Institute of Mayhem" hidden>
+    <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><rect x="0.5" y="0.5" width="31" height="31" rx="4" fill="#0a0b0a" stroke="#ffb00080"/><rect x="9" y="7" width="14" height="18" fill="#ffb000"/><rect x="15" y="7" width="2" height="18" fill="#0a0b0a"/><rect x="9" y="14" width="14" height="2" fill="#0a0b0a"/></svg>
+    <span aria-hidden="true">IoM</span>
+  </a>
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
   <script type="module" src="src/main.js"></script>
 </body>

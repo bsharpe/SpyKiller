@@ -2,6 +2,8 @@ import { unlock, toggleMusic, isMusicOn } from '../audio.js';
 import { FONT, loadHi } from '../opts.js';
 
 const W = 540, H = 960;
+const iom = document.getElementById('iom');
+iom.addEventListener('keydown', e => e.stopPropagation()); // Enter on the focused link must not start a run
 
 export class Title extends Phaser.Scene {
   constructor() { super('Title'); }
@@ -39,21 +41,14 @@ export class Title extends Phaser.Scene {
     if (hi) txt(W / 2, 400, `BEST  ${hi}`, 16, '#7dff9a');
     const music = txt(W / 2, 800, `MUSIC ${isMusicOn() ? 'ON' : 'OFF'}  (M)`, 12, '#8fa3b8');
 
-    // Institute of Mayhem badge (its window mark, from instituteofmayhem.com/favicon.svg) linking to the landing page
-    this.add.graphics({ x: 16, y: 16 })
-      .fillStyle(0x0a0b0a).fillRoundedRect(0, 0, 32, 32, 4).lineStyle(1, 0xffb000, 0.5).strokeRoundedRect(0, 0, 32, 32, 4)
-      .fillStyle(0xffb000).fillRect(9, 7, 14, 18)
-      .fillStyle(0x0a0b0a).fillRect(15, 7, 2, 18).fillRect(9, 14, 14, 2);
-    const iomText = txt(56, 32, 'IoM', 18, '#ffb000').setOrigin(0, 0.5);
-    const iom = this.add.zone(12, 12, 92, 40).setOrigin(0).setInteractive({ useHandCursor: true });
-    iom.on('pointerover', () => iomText.setColor('#ffffff'));
-    iom.on('pointerout', () => iomText.setColor('#ffb000'));
-    iom.on('pointerup', () => window.open('https://instituteofmayhem.com/', '_blank', 'noopener'));
+    // Institute of Mayhem badge (DOM link in index.html) shows only on the title screen
+    iom.hidden = false;
+    this.events.once('shutdown', () => { iom.hidden = true; });
 
     const go = () => { unlock(); this.scene.start('Run', {}); };
     this.input.keyboard.once('keydown-ENTER', go);
     this.input.keyboard.once('keydown-SPACE', go);
-    this.input.on('pointerdown', (p, over) => { if (!over.includes(iom)) go(); });
+    this.input.on('pointerdown', go);
     this.input.keyboard.on('keydown-M', () => { unlock(); music.setText(`MUSIC ${toggleMusic() ? 'ON' : 'OFF'}  (M)`); });
   }
 }

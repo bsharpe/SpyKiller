@@ -14,6 +14,10 @@ const ROAD = 0x46494e;
 const WATER = 0x1f6fa8, DEEP = 0x165684, BANK = 0xb59a6a;
 const WEAPON_NAMES = { oil: 'OIL SLICK', smoke: 'SMOKE SCREEN', missile: 'MISSILES' };
 const SILENT = new Proxy({}, { get: () => () => {} });
+// side panels in index.html, visible only on wide screens
+const sideBest = document.getElementById('side-best'), sideDist = document.getElementById('side-dist');
+sideBest.textContent = loadHi();
+const setText = (el, v) => { if (el.textContent !== v) el.textContent = v; };
 
 export class Run extends Phaser.Scene {
   constructor() { super('Run'); }
@@ -46,7 +50,7 @@ export class Run extends Phaser.Scene {
     this.props = new Map(); this.feats = new Map(); this.decals = []; this.marks = [];
     this.player = this.makeView({ type: 'car' }, this.lGround);
 
-    if (!this.attract) { this.makeHud(); this.bindKeys(); }
+    if (!this.attract) { this.makeHud(); this.bindKeys(); this.best = loadHi(); }
     this.events.once('shutdown', () => engine(0, false));
   }
 
@@ -528,6 +532,8 @@ export class Run extends Phaser.Scene {
     g.lineStyle(2, 0xffffff, 1).lineBetween(cx, cy, cx + Math.cos(a) * 28, cy + Math.sin(a) * 28);
     this.speedText.setText(String(Math.round(sp * 0.25)));
     for (const sl of this.slots) { const n = s.weapons[sl.k]; sl.n.setText(String(n)); sl.icon.setAlpha(n > 0 ? 1 : 0.25); sl.n.setAlpha(n > 0 ? 1 : 0.35); }
+    setText(sideBest, String(Math.max(this.best, Math.floor(s.score))));
+    setText(sideDist, `${(p.d / 1000).toFixed(1)} km`);
     if (this.debugText) this.debugText.setText(`seed ${this.seed}  d ${p.d | 0}  ents ${s.ents.length}  fps ${this.game.loop.actualFps | 0}`);
   }
 
