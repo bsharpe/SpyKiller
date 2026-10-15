@@ -70,6 +70,6 @@ Cloudflare Workers static assets. `.assetsignore` is an allowlist: only `index.h
 
 Created by Ben Sharpe as an AI-assisted learning project. Spy Hunter was created by Bally Midway; this is an unofficial fan remake and is not affiliated with or endorsed by the rights holders.
 
-Every texture is painted in code at runtime (`src/art.js`), and every sound is synthesized with Web Audio (`src/audio.js`). The music is an original riff, not the Peter Gunn theme used by the arcade game. Third-party pieces loaded at runtime: [Phaser](https://phaser.io/) (MIT) from jsDelivr and the [Russo One](https://fonts.google.com/specimen/Russo+One) font (SIL Open Font License) from Google Fonts.
+Every texture is painted in code at runtime (`src/art.js`), and every sound is synthesized with Web Audio (`src/audio.js`). The music is an original riff, not the Peter Gunn theme used by the arcade game. The link-preview image (`og.jpg`) is AI-generated background art from OpenAI's image model, used through Codex, with the title set in Russo One. Third-party pieces loaded at runtime: [Phaser](https://phaser.io/) (MIT) from jsDelivr and the [Russo One](https://fonts.google.com/specimen/Russo+One) font (SIL Open Font License) from Google Fonts.
 
 Original code written for this project is available under the [MIT license](LICENSE). The license does not grant rights to Spy Hunter's name, artwork, music, or trademarks, or to third-party material.

@@ -3,7 +3,7 @@
 const base = process.argv[2];
 if (!base) { console.error('usage: node smoke.mjs <base-url>'); process.exit(2); }
 const EXPECTED = {
-  '/': 200, '/src/main.js': 200, '/src/logic/sim.js': 200, '/src/scenes/Run.js': 200,
+  '/': 200, '/src/main.js': 200, '/src/logic/sim.js': 200, '/src/scenes/Run.js': 200, '/og.jpg': 200,
   '/.git/HEAD': 404, '/docs/': 404, '/test/': 404, '/package.json': 404, '/wrangler.jsonc': 404, '/README.md': 404, '/scripts/dev.mjs': 404, '/.assetsignore': 404,
 };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
