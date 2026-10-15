@@ -97,6 +97,8 @@ On October 14, after the same finishing work on another Institute game, Battle W
 
 A Claude Code session picked up that handoff. It replaced the canvas badge with the Institute's standard HTML badge: lower-left, 16 pixels from the left and 32 from the bottom, with mobile safe-area insets, keyboard focus, and an accessible name. The badge appears only on the title screen, and pressing Enter on it does not start a run. The session also added the MIT license and a README section on credits and licensing, and wrote this document.
 
+The same day, a separate change used the empty bars beside the portrait game on wide screens. Side panels now show the controls on the left and the best score and current distance on the right. The conversation behind that change was not recovered.
+
 ## What this process demonstrates
 
 The user set the goal and knew the original game; AI built, tested, and shipped it. The most productive prompts were short and concrete: a reusable skill to start from, a one-line standard ("same rules, better animation, same gameplay"), and corrections from first-hand memory of the original. Each correction became a test, so later changes could not quietly undo it.
