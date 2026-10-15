@@ -18,7 +18,7 @@
     @media (max-width: 520px) { #iom span { display: none; } }
     /* side panels fill the letterbox bars beside the 9:16 canvas on wide screens */
     .side { display: none; position: fixed; top: 0; bottom: 0; width: calc((100vw - 100vh * 9 / 16) / 2); box-sizing: border-box; padding: 16px; flex-direction: column; justify-content: center; align-items: center; gap: 32px; color: #dfe8f0; font: 15px/1.4 'Russo One', sans-serif; text-align: center; pointer-events: none; }
-    @media (min-aspect-ratio: 5/4) { .side { display: flex; } }
+    @media (min-aspect-ratio: 5/4) and (hover: hover) and (pointer: fine) { .side { display: flex; } }
     #side-l { left: 0; } #side-r { right: 0; }
     .side h2 { margin: 0 0 10px; font-size: 12px; font-weight: normal; letter-spacing: 0.15em; color: #8fa3b8; }
     .side dl { display: grid; grid-template-columns: auto auto; gap: 6px 14px; margin: 0; text-align: left; }
